@@ -11,7 +11,7 @@
 
    <groupId>de.viadee</groupId>
    <artifactId>mateo-orchestrator</artifactId>
-   <version>0.0.1-SNAPSHOT</version>
+   <version>0.0.1</version>
    <name>Mateo Orchestrator</name>
    <description>Project for the mateo orchestrator</description>
    <inceptionYear>2021</inceptionYear>
