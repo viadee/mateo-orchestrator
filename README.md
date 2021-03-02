@@ -5,9 +5,9 @@ Mateo orchestrator repository
 Mateo orchestrator is a standalone application that allows to orchestrate mateo instances.
 
 ## Functionality
-The Mateo orchestrator has a list of Mateo instances.
-Test scripts can be passed to the orchestrator for execution via REST api.
-An Id is returned with which the status of the job can be queried.
+The Mateo orchestrator has a list of Mateo instances (described in `src/main/resources/mateoInstances.txt`).
+Test scripts (path) can be passed to the orchestrator for execution via REST api.
+An id of the started job is returned (with which the status of the job can be queried).
 
 ### Job
 A [job](./api-doc.md#jobentity) consists of:
@@ -45,3 +45,6 @@ Body:<br>
 The returned Id can now be used to query the job:<br>
 GET: <br> 
 http://localhost:8083/api/job?uuid=4c74d8c4-1c0c-4e43-8725-32e867e76b23
+
+## Swagger
+If you started the application you can access the Swagger UI via `http://HOST:PORT/swagger-ui.html`.
