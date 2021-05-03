@@ -1,0 +1,37 @@
+name: Build and Deploy Mateo Orchestrator
+
+# Controls when the action will run.
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  release:
+    types:
+      - created
+  
+jobs:
+  push_to_registry:
+    name: Push Docker image to GitHub Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+        
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+         java-version: '15' # The JDK version to make available on the path.
+         java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
+         architecture: x64 # (x64 or x86) - defaults to x64
+         
+      - name: Build with Maven
+        run: mvn -B package -DskipTests --file pom.xml
+        working-directory: .
+        
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: viadee/mateo-orchestrator/mateo_orchestrator_image
+          tag_with_ref: true
